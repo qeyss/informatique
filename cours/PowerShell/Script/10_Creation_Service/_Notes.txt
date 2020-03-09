@@ -1,0 +1,5 @@
+1) Nécessité de disposer du dossier "PS2EXE-GUI" ou équivalent pour la création d'un exécutable à partir d'un fichier Powershell
+
+2) Nécessité de la présence de SRVANY.exe pour la mise en place initiale du service
+
+3) CreaService.PS1 doit être lancé en administrateur 

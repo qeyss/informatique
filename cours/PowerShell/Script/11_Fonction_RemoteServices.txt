@@ -1,0 +1,14 @@
+function RemoteServices {
+PARAM (
+	[string]$Service,
+	[string]$Etat = "running", 
+	[string[]]$Machines
+)
+
+for ($i = 0 ; $i -lt $Machines.count ; $i++)
+{
+	$Session = new-pssession $Machines[$i]
+	invoke-command -session $Session -scriptblock {get-service $Args[0] | ? {$_.status -eq $Args[1]}} -ArgumentList $Service,$Etat >> c:\labo\RemoteService.log
+}
+
+

@@ -1,0 +1,20 @@
+function Hasard
+{
+<#
+.DESCRIPTION
+	Mon script permet d'apprécier le hasard (ou pas)
+	
+.EXAMPLE
+	Pour couper le script faire CTRL + C
+#>
+
+Add-Type -AssemblyName System.Windows.Forms
+for ($i = 0 ; $i -lt 500000 ; $i++)
+{
+Write-Verbose "Attention ca repart !"
+Write-Debug "si ca part c'est bon signe"
+$X = get-random -Minimum 0 -Maximum 1000
+$Y = get-random -Minimum 0 -Maximum 1000
+[Windows.Forms.Cursor]::Position = "$X,$Y"
+}
+}

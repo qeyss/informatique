@@ -1,0 +1,37 @@
+#Processus dont la durée de vie CPU est supérieure à 5
+Get-Process | ? {$_.CPU -gt 5}
+
+#Services qui commencent par la lettre S et qui sont actifs
+Get-Service S* | ? {$_.Status -like "running"}
+
+#Ecriture des 2 commandes dans le fichier Recap.txt
+Get-Process | ? {$_.CPU -gt 5} > Recap.txt
+Get-Service | ? {$_.Status -like "running"} >> Recap.txt
+
+#Couper les processus powershell (attention)
+Get-Process powershell | Stop-Process
+
+#Création de répertoires qui concernent l'activation de bitlocker
+get-command enable*bitlocker* | ? {mkdir $_.name}
+get-command enable*bitlocker* | ? {mkdir ("C:\labo\" + $_.name}
+
+#Répertoires datant de cette année (3 versions)
+Get-ChildItem C:\ | ? {$_.CreationTime -ge "01/01/2018"}
+Get-ChildItem C:\ | ? {$_.CreationTime -gt "12/31/2017"}
+ls C:\ | ? {$_.CreationTime.Year -eq (get-date).year}
+
+#Création des fichiers de 10,20 et 60 Mb
+fsutil file createnew C:\labo\fichier10Mb 10000000
+fsutil file createnew C:\labo\fichier20Mb 20000000
+fsutil file createnew C:\labo\fichier60Mb 60000000
+
+#Classer les fichiers supérieurs à 10Mb et 50Mb dans le répertoire moyen
+mkdir Moyen
+ls -file | ? {$_.Length -gt 10000000 -and $_.Length -lt 50000000} | ? {Move-Item $_.Name moyen}
+
+#Message jaune disant "le powershell m'a donné la jaunisse"
+Write-host "Le powershell m'a donné la jaunisse" -foregroundcolor Yellow
+
+#Historique des 4 dernières commandes dans le fichier last4commands.txt
+get-history -count 4 > Last4Commands.txt 
+H -c 4 > Last4Commands.txt 

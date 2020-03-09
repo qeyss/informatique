@@ -1,0 +1,58 @@
+# se déplacer sur C:
+	Set-Location /
+	cd /
+
+# Créer les répertoires Script et Labo
+	New-Item Script,Labo -ItemType "directory"
+	mkdir script,labo
+
+# Créer les répertoires Rep1, Rep2, Rep3 dans labo
+	New-Item Labo\Rep1,Labo\Rep2,Labo\Rep3 -ItemType "directory"
+	mkdir c:\labo\rep1,Labo\Rep2,Labo\Rep3
+ou
+	cd labo
+	mkdir rep1,rep2,rep3
+
+# Créer fichiers Rapport.txt, Compta.doc,Texte1.txt, Texte3.txt
+	New-Item labo\Rapport.txt, labo\Compta.doc, labo\Texte1.txt, labo\Texte3.txt -itemtype file
+
+# Renommer Texte3.txt en Script1.ps1
+	Rename-Item Labo\Texte3.txt Script1.ps1
+
+# Déplacer Script1.ps1 dans le répertoire Script
+	Move-Item Labo\script1.ps1 Script\
+	
+# Déplacer Rapport.txt dans Rep1 et le renommer Rapport_01.txt
+	Move-Item Labo\Rapport.txt Labo\rep1\Rapport_01.txt
+
+# Afficher le contenu de labo
+	Get-ChildItem Labo
+	ls labo
+
+# Afficher le contenu de labo et de ses sous répertoires
+	Get-ChildItem Labo -recurse
+	ls labo -recurse
+# Afficher uniquement les fichiers texte de labo et de ses sous répertoires
+	Get-ChildItem Labo -recurse -include *.txt
+	ls labo -recurse -include *.txt
+
+# Supprimer Script1.ps1
+	Remove-Item script\Script1.ps1
+	rm script\script1.ps1
+
+# Ouvrir Texte1.txt et y écrire "Bonjour je suis texte 1"
+	"Bonjour je suis texte 1" > labo\Texte1.txt | notepad labo\texte1.txt
+
+# Créer un fichier commande.txt dans Rep2 contenant toutes les commandes tapées
+	Get-History > labo\Rep2\Commande.txt
+	h > labo\rep2\commande.txt
+
+# Afficher le contenu de commande.txt sur le powershell
+	Get-Content labo\Rep2\Commande.txt
+	cat labo\Rep2\Commande.txt
+
+# Ecrire le contenu de Text1.txt dans une variable Var1
+	$Var1 = Get-Content .\labo\texte1.txt
+
+# Créer Var2 avec comme contenu Var1 avec écrit à la fin ", et moi je suis Var2"
+	$Var2 = $Var1 + ", et moi je suis Var2"

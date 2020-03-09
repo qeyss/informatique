@@ -1,0 +1,17 @@
+function Achat
+{
+	mkdir c:\labo -ErrorAction Ignore
+	param( [double]$Prix, [int]$Quantite, [string]$Materiel = "Inconnu")
+	if (-not (Test-Path c:\labo\Stock.csv))
+	{
+		"Materiel`tQuantite`tTotal" > c:\labo\Stock.csv	
+	}
+	if (-not (Test-Path c:\labo\Donnees.csv))
+	{
+		"Materiel;Quantite;Total" > c:\labo\Donnees.csv	
+	}
+	[double] $Total = $Prix * $Quantite
+	"$Materiel`t$Quantite`t$Total" >> c:\labo\Stock.csv
+	"$Materiel;$Quantite;$Total" >> c:\labo\Donnees.csv
+	return Write-Host "Fichiers Mis à jour" -ForegroundColor green
+}

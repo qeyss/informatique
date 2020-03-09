@@ -1,0 +1,28 @@
+Function Bilan {
+param ( [string]$Fichier )
+
+$Total = 0
+if (-not (Test-Path $Fichier))
+{
+	Return Write-Host "Le fichier n'existe pas" -foregroundcolor Red
+}
+$csv = import-csv $Fichier -delimiter ";"
+foreach ($Objet in $csv)
+{
+	$Total += $Objet.Total
+}
+$Rendu = "Return Write-Host `"Bilan du projet : `$Total euros`""
+if ($Total -lt 2000)
+{
+	$Rendu += " -foregroundcolor Green"
+}
+elseif ($Total -lt 4000)
+{
+	$Rendu += " -foregroundcolor yellow"
+}
+else
+{
+	$Rendu += " -foregroundcolor Red"
+}
+Invoke-Expression $Rendu
+}

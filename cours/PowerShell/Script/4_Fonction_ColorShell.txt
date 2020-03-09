@@ -1,0 +1,21 @@
+function ColorShell {
+
+<# 
+	.EXAMPLE
+	"il faut faire comme ca"
+
+	.EXAMPLE
+	"il faut faire comme ca"
+
+	.EXAMPLE
+	"il faut faire comme ca"
+
+#>
+	PARAM( [string]$color )
+	$ColorReset = $host.ui.RawUI.BackgroundColor
+	$host.ui.RawUI.BackgroundColor = $color
+	cls
+	Sleep 5
+	$host.ui.RawUI.BackgroundColor = $ColorReset
+	cls
+}

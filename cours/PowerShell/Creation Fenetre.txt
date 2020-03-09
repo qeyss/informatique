@@ -1,0 +1,35 @@
+[reflection.assembly]::loadwithpartialname("System.Windows.Forms") | Out-Null
+[reflection.assembly]::loadwithpartialname("System.Drawing") | Out-Null
+
+$fene = New-Object Windows.Forms.Form
+$fene.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$fene.MaximizeBox = $False
+$fene.MinimizeBox = $False
+$fene.Text = "Ma fenetre pour le PowerShell"
+$fene.Size = New-Object System.Drawing.Size(400,370)
+
+$fene.ShowDialog()
+
+$button_ok = New-Object System.Windows.Forms.Button
+$button_ok.Text = "OK"
+$button_ok.Size = New-Object System.Drawing.Size(355,40)
+$button_ok.Location = New-Object System.Drawing.Size(20,230)
+$fene.Controls.Add($button_quit)
+
+$fene.ShowDialog()
+
+$button_ok.Add_Click(
+{
+$fene.Close();
+})
+
+$fene.Controls.Add($button_ok)
+$fene.ShowDialog()
+
+$label_prez = New-Object System.Windows.Forms.Label
+$label_prez.Location = New-Object System.Drawing.Point(20,20)
+$label_prez.Size = New-Object System.Drawing.Size(100,20)
+$label_prez.Text = "installation en cours"
+
+$fene.Controls.Add($label_prez)
+$fene.ShowDialog()
