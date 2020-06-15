@@ -1,9 +1,0 @@
-[System.Collections.Arraylist]$Fonctions = @()
-ls c:\script\*fonction*.txt -recurse | ? {$Fonctions += "$_"}
-
-if (test-path c:\script\ModuleLabo)
-{
-	rm c:\script\ModuleLabo
-}
-mkdir c:\script\ModuleLabo
-cat $Fonctions > c:\script\ModuleLabo\ModuleLabo.psm1
